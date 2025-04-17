@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 
 namespace ConexaoBD
 {
@@ -17,6 +18,13 @@ namespace ConexaoBD
         public Produto()
         {
             conexao = new Conexao();
+        }
+
+        public void Insere()
+        {
+            string query = $"INSERT INTO produtos (nome, preco) VALUES ( '{nome}', {preco.ToString().Replace(",", ".")} );";
+            conexao.ExecutaComando(query);
+            Console.WriteLine("Produto inserido com sucesso!");
         }
 
         public List<Produto> BuscaTodos()
@@ -42,6 +50,10 @@ namespace ConexaoBD
             return lista;
 
         }
+
+
+
+
 
     }
 }
